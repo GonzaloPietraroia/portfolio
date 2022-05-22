@@ -1,5 +1,17 @@
 import streamlit as st
 
+darkmode = """
+<style>
+body {
+  background-color: black;
+  color: white;
+}
+</style>
+"""
+buffer = st.sidebar.checkbox('click here to Toggle')
+if buffer:
+    st.markdown(darkmode,unsafe_allow_html=True)
+st.header("Theme will change")
 
 # TEST
 st.title('STREAMLIT TUTORIAL')
