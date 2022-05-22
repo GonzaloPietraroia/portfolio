@@ -107,6 +107,9 @@ st.success('finished!')
 st.sidebar.header('about')
 st.sidebar.text('this is a stream lit tut')
 
+st.sidebar.text('this aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaut')
+
+
 @st.cache
 def run_f():
     return range(100)
