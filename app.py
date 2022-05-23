@@ -5,7 +5,6 @@ from PIL import Image, ImageDraw
 from IPython.display import display
 import webbrowser
 import gettext
-from bokeh.models.widgets import Div
 
 _ = gettext.gettext
 
@@ -36,13 +35,6 @@ with st.sidebar:
         webbrowser.open_new_tab('https://www.linkedin.com/in/gonzalo-pietraroia-7398241b9/')
 
 
-with st.sidebar:
-    if st.button('Go LinkedIn'):
-        js = "window.open('https://www.linkedin.com/in/gonzalo-pietraroia-7398241b9/')"  # New tab or window
-    # js = "window.location.href = 'https://www.streamlit.io/'"  # Current tab
-        html = '<img src onerror="{}">'.format(js)
-        div = Div(text=html)
-        st.bokeh_chart(div)
 
 st.sidebar.caption(_('Queres conectar?'))
 st.sidebar.write('📧: gonzalo.pietraroia@gmail.com')
