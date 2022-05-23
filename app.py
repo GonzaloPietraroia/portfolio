@@ -1,13 +1,21 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import numpy as np
+from PIL import Image, ImageDraw
+from IPython.display import display
 
 st.set_page_config(page_title='Gonzalo Pietraroia\'s portfolio' ,layout="wide",page_icon='💼')
 
-embed_component= {'linkedin':"""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="gonzalo-pietraroia-7398241b9" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/gonzalo-pietraroia-7398241b9/"></a></div>"""}
+#embed_component= {'linkedin':"""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+ #   <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="gonzalo-pietraroia-7398241b9" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/gonzalo-pietraroia-7398241b9/"></a></div>"""}
 
-with st.sidebar:
-        components.html(embed_component['linkedin'],height=300)
+#with st.sidebar:
+ #       components.html(embed_component['linkedin'],height=300)
+
+img = Image.open('images/Perfil-modified.png')
+st.sidebar.image(img)
+
+
 st.sidebar.caption('Wish to connect?')
 st.sidebar.write('📧: gonzalo.pietraroia@gmail.com')
 pdfFileObj = open('pdf/CV - Pietraroia Gonzalo.pdf', 'rb')
@@ -46,7 +54,7 @@ st.write('Text with write')
 
 st.write(range(10))
 
-from PIL import Image
+
 img = Image.open('shaco.png')
 st.image(img,width=300,caption='shaco')
 
