@@ -1,17 +1,21 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
-darkmode = """
-<style>
-body {
-  background-color: black;
-  color: white;
-}
-</style>
-"""
-buffer = st.sidebar.checkbox('click here to Toggle')
-if buffer:
-    st.markdown(darkmode,unsafe_allow_html=True)
-st.header("Theme will change")
+st.set_page_config(page_title='Gonzalo Pietraroia\'s portfolio' ,layout="wide",page_icon='💼')
+
+embed_component= {'linkedin':"""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="gonzalo-pietraroia-7398241b9" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/gonzalo-pietraroia-7398241b9/"></a></div>"""}
+
+with st.sidebar:
+        components.html(embed_component['linkedin'],height=300)
+st.sidebar.caption('Wish to connect?')
+st.sidebar.write('📧: gonzalo.pietraroia@gmail.com')
+pdfFileObj = open('pdf/CV - Pietraroia Gonzalo.pdf', 'rb')
+st.sidebar.download_button('Download resume',pdfFileObj,file_name='CV - Pietraroia Gonzalo.pdf',mime='pdf')
+
+
+
+
 
 # TEST
 st.title('STREAMLIT TUTORIAL')
@@ -117,10 +121,6 @@ st.success('finished!')
 
 #st.balloons()
 
-st.sidebar.header('about')
-st.sidebar.text('this is a stream lit tut')
-
-st.sidebar.text('this aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaut')
 
 
 @st.cache
@@ -137,3 +137,5 @@ st.pyplot()
 st.dataframe(df)
 
 st.table(df)
+
+
