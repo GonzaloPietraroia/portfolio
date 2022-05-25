@@ -1,14 +1,19 @@
 import streamlit as st
-import streamlit.components.v1 as components
+from streamlit_option_menu import option_menu
 import numpy as np
 from PIL import Image
 import gettext
 import pandas as pd
 
 
+# Configuracion de pagina(titulo,icono y layout)
 
-st.set_page_config(page_title='Gonzalo Pietraroia\'s portfolio' ,layout="wide",page_icon='💼')
+st.set_page_config(page_title='Gonzalo Pietraroia\'s portfolio' ,layout="wide",page_icon='💼',initial_sidebar_state="auto")
 
+
+# Uso de GetText para implementar idiomas. (usar _() en strings)
+# Creo los archivos base.pot "C:\Users\fezz2\AppData\Local\Programs\Python\Python310\Tools\i18n\pygettext.py -d base -o locales\base.pot app.py"
+# Creo los archivos base.mo "C:\Users\fezz2\AppData\Local\Programs\Python\Python310\Tools\i18n\msgfmt.py -o locales\en\LC_MESSAGES\base.mo locales\en\LC_MESSAGES\base"
 
 _ = gettext.gettext
 language = st.sidebar.selectbox('', ['ES','EN'])
@@ -19,6 +24,7 @@ try:
 except:
     pass
 
+# Implementacion del SideBar con contacto, cv e imagen
 
 img = Image.open('images/Perfil-modified.png')
 st.sidebar.image(img,width=180)
@@ -41,6 +47,30 @@ pdfFileObj = open('pdf/CV - Pietraroia Gonzalo.pdf', 'rb')
 st.sidebar.download_button(_('Descargar Curriculum Vitae'),pdfFileObj,file_name='CV - Pietraroia Gonzalo.pdf',mime='pdf')
 
 
+# Implementacion del cuerpo del portfolio
+
+selected = option_menu(
+    menu_title = None,
+    options=["Home","Topo"],
+    orientation="horizontal"
+)
+
+selected3 = option_menu(None, ["Home", "Upload",  "Tasks", 'Settings'], 
+    icons=['house', 'cloud-upload', "list-task", 'gear'], 
+    menu_icon="cast", default_index=0, orientation="horizontal",
+    styles={
+        "container": {"padding": "0!important", "background-color": "#fafafa"},
+        "icon": {"color": "orange", "font-size": "25px"}, 
+        "nav-link": {"font-size": "25px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
+        "nav-link-selected": {"background-color": "green"},
+        }
+)
+st.markdown('## Summary', unsafe_allow_html=True)
+st.info('''
+- Experienced Educator, Researcher and Administrator with almost twenty years of experience in data-oriented environment and a passion for delivering insights based on predictive modeling. 
+- Strong verbal and written communication skills as demonstrated by extensive participation as invited speaker at `10` conferences as well as publishing 149 research articles.
+- Strong track record in scholarly research with H-index of `32` and total citation of 3200+.
+''')
 
 # TEST
 st.title('STREAMLIT TUTORIAL')
