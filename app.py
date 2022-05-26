@@ -6,9 +6,19 @@ import gettext
 import pandas as pd
 
 
+
 # Configuracion de pagina(titulo,icono y layout)
 
-st.set_page_config(page_title='Gonzalo Pietraroia\'s portfolio' ,layout="wide",page_icon='💼',initial_sidebar_state="auto")
+st.set_page_config(
+  page_title='Gonzalo Pietraroia\'s portfolio' ,
+  layout="wide",page_icon='💼',
+  initial_sidebar_state="auto",
+  menu_items={
+          'Get Help': 'https://www.extremelycoolapp.com/help',
+        'Report a bug': "https://www.extremelycoolapp.com/bug",
+       'About': "# This is a header. This is an *extremely* cool app!"
+     }
+)
 
 
 # Uso de GetText para implementar idiomas. (usar _() en strings)
@@ -49,11 +59,98 @@ st.sidebar.download_button(_('Descargar Curriculum Vitae'),pdfFileObj,file_name=
 
 # Implementacion del cuerpo del portfolio
 
+# with open("style.css") as f:
+#     st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
+
+st.markdown('''
+<style>
+header {
+    visibility: hidden;
+    }
+
+.css-1lcbmhc.e1fqkh3o3{
+  margin-top: 3.8rem;
+    }
+.css-v7iw96.edgvbvh3{
+  margin-top: 5rem;
+}
+
+
+
+</style>
+'''
+,unsafe_allow_html=True)
+
+
+# side_bar = """
+#   <style>
+#     /* The whole sidebar */
+#     .css-1lcbmhc.e1fqkh3o0{
+#       margin-top: 3.8rem;
+#     }
+     
+#      /* The display arrow */
+#     .css-sg054d.e1fqkh3o3 {
+#       margin-top: 5rem;
+#       }
+  
+#   </style> 
+#   """
+
+# st.markdown('''
+# <style>
+# /* Left sidebar */
+# .css-1iyw2u1.edgvbvh6 {
+# margin-top: 3.7rem;
+# }
+
+# /* Right drop-down */
+# .css-r698ls.e8zbici2 {
+# margin-top: -1.7rem;
+# }
+# </style>
+# ''', unsafe_allow_html=True)
+
+# st.markdown(side_bar, unsafe_allow_html=True)
+
+st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
+
+st.markdown("""
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #16A2CB;">
+  <a class="navbar-brand" href="https://youtube.com/dataprofessor" target="_blank">Chanin Nantasenamat</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link disabled" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#education">Education</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#work-experience">Work Experience</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#bioinformatics-tools">Bioinformatics Tools</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#social-media">Social Media</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+"""
+, unsafe_allow_html=True)
+
+
 selected = option_menu(
     menu_title = None,
     options=["Home","Topo"],
     orientation="horizontal"
 )
+
 
 selected3 = option_menu(None, ["Home", "Upload",  "Tasks", 'Settings'], 
     icons=['house', 'cloud-upload', "list-task", 'gear'], 
@@ -83,7 +180,7 @@ st.subheader('this is a header')
 
 st.text('this is a header')
 
-st.markdown('### aaaaa')
+st.markdown('###aaaaa')
 
 st.success('success')
 
