@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-23 18:46-0300\n"
+"POT-Creation-Date: 2022-05-26 14:40-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: app.py:27
+#: app.py:45
 msgid "Queres conectar?"
-msgstr "Wish to connect?"
+msgstr ""
 
-#: app.py:35
+#: app.py:57
 msgid "Descargar Curriculum Vitae"
-msgstr "Download resume"
+msgstr ""
 
