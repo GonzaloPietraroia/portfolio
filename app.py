@@ -26,7 +26,7 @@ st.set_page_config(
 # Creo los archivos base.mo "C:\Users\fezz2\AppData\Local\Programs\Python\Python310\Tools\i18n\msgfmt.py -o locales\en\LC_MESSAGES\base.mo locales\en\LC_MESSAGES\base"
 
 _ = gettext.gettext
-language = st.sidebar.selectbox('', ['ES','EN'])
+language = st.sidebar.selectbox('🌐Seleccione su idioma:', ['ES','EN'])
 try:
    localizator = gettext.translation('base', localedir='locales', languages=[language])
    localizator.install()
@@ -57,29 +57,37 @@ pdfFileObj = open('pdf/CV - Pietraroia Gonzalo.pdf', 'rb')
 st.sidebar.download_button(_('Descargar Curriculum Vitae'),pdfFileObj,file_name='CV - Pietraroia Gonzalo.pdf',mime='pdf')
 
 
+st.markdown('''
+<style>
+sidebar{
+margin: 10rem
+}
+</style>
+''',unsafe_allow_html=True)
+
 # Implementacion del cuerpo del portfolio
 
 # with open("style.css") as f:
 #     st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
 
-st.markdown('''
-<style>
-header {
-    visibility: hidden;
-    }
+# st.markdown('''
+# <style>
+# header {
+#     visibility: hidden;
+#     }
 
-.css-1lcbmhc.e1fqkh3o3{
-  margin-top: 3.8rem;
-    }
-.css-v7iw96.edgvbvh3{
-  margin-top: 5rem;
-}
+# .css-1lcbmhc.e1fqkh3o3{
+#   margin-top: 3.8rem;
+#     }
+# .css-v7iw96.edgvbvh3{
+#   margin-top: 5rem;
+# }
 
 
 
-</style>
-'''
-,unsafe_allow_html=True)
+# </style>
+# '''
+# ,unsafe_allow_html=True)
 
 
 # side_bar = """
@@ -113,57 +121,47 @@ header {
 
 # st.markdown(side_bar, unsafe_allow_html=True)
 
-st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
+# st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
 
-st.markdown("""
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #16A2CB;">
-  <a class="navbar-brand" href="https://youtube.com/dataprofessor" target="_blank">Chanin Nantasenamat</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link disabled" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#education">Education</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#work-experience">Work Experience</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#bioinformatics-tools">_(Bioinformatics Tools)</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#social-media">Social Media</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-"""
-, unsafe_allow_html=True)
-
+# st.markdown("""
+# <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #16A2CB;">
+#   <a class="navbar-brand" href="https://youtube.com/dataprofessor" target="_blank">Gonzalo Pietraroia</a>
+#   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+#   <span class="navbar-toggler-icon"></span>
+#   </button>
+#   <div class="collapse navbar-collapse" id="navbarNav">
+#     <ul class="navbar-nav">
+#       <li class="nav-item active">
+#         <a class="nav-link disabled" href="/">Home <span class="sr-only">(current)</span></a>
+#       </li>
+#       <li class="nav-item">
+#         <a class="nav-link" href="#education">Education</a>
+#       </li>
+#       <li class="nav-item">
+#         <a class="nav-link" href="#work-experience">Work Experience</a>
+#       </li>
+#       <li class="nav-item">
+#         <a class="nav-link" href="#bioinformatics-tools">Bioinformatics Tools</a>
+#       </li>
+#       <li class="nav-item">
+#         <a class="nav-link" href="#nashe">Social Media</a>
+#       </li>
+#     </ul>
+#   </div>
+# </nav>
+# """
+# , unsafe_allow_html=True)
 
 selected = option_menu(
     menu_title = None,
-    options=["Home","Topo"],
+    options=["Presentacion","Conocimientos","Proyectos"],
     orientation="horizontal"
 )
 
 
-selected3 = option_menu(None, ["Home", "Upload",  "Tasks", 'Settings'], 
-    icons=['house', 'cloud-upload', "list-task", 'gear'], 
-    menu_icon="cast", default_index=0, orientation="horizontal",
-    styles={
-        "container": {"padding": "0!important", "background-color": "#fafafa"},
-        "icon": {"color": "orange", "font-size": "25px"}, 
-        "nav-link": {"font-size": "25px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
-        "nav-link-selected": {"background-color": "green"},
-        }
-)
-st.markdown('## Summary', unsafe_allow_html=True)
-st.info('''
+if selected == "Presentacion":
+  st.markdown('## Summary', unsafe_allow_html=True)
+  st.info('''
 - Experienced Educator, Researcher and Administrator with almost twenty years of experience in data-oriented environment and a passion for delivering insights based on predictive modeling. 
 - Strong verbal and written communication skills as demonstrated by extensive participation as invited speaker at `10` conferences as well as publishing 149 research articles.
 - Strong track record in scholarly research with H-index of `32` and total citation of 3200+.
@@ -273,6 +271,7 @@ st.success('finished!')
 
 #st.balloons()
 
+st.header('nashe')
 
 
 @st.cache
