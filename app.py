@@ -5,8 +5,6 @@ from PIL import Image
 import gettext
 import pandas as pd
 
-import graphviz as graphviz
-
 # Configuracion de pagina(titulo,icono y layout)
 
 st.set_page_config(
