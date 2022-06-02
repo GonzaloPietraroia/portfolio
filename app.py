@@ -5,7 +5,7 @@ from PIL import Image
 import gettext
 import pandas as pd
 
-
+import graphviz as graphviz
 
 # Configuracion de pagina(titulo,icono y layout)
 
@@ -33,6 +33,16 @@ try:
    _ = localizator.gettext 
 except:
     pass
+
+info = {'skills':['Data Science','RDBMS','Cassandra','AWS Athena','Snowflake','Comet-ML','Python','Java','C++','Airflow','AWS S3','Tableau','Metabase','Thoughtspot','Streamlit']}
+
+skill_col_size = 4
+
+
+
+
+
+
 
 # Implementacion del SideBar con contacto, cv e imagen
 
@@ -66,6 +76,196 @@ margin: 10rem
 ''',unsafe_allow_html=True)
 
 # Implementacion del cuerpo del portfolio
+
+
+selected = option_menu(
+    menu_title = None,
+    options=[_("Presentacion"),_("Conocimientos"),_("Proyectos")],
+    orientation="horizontal"
+)
+
+
+if selected == "Presentacion":
+    st.markdown(_('## '), unsafe_allow_html=True)
+   
+
+if selected == "Conocimientos":
+
+    
+
+    def skill_tab():
+        rows,cols = len(info['skills'])//skill_col_size,skill_col_size
+        skills = iter(info['skills'])
+        if len(info['skills'])%skill_col_size!=0:
+            rows+=1
+        for x in range(rows):
+            columns = st.columns(skill_col_size)
+            for index_ in range(skill_col_size):
+                try:
+                    columns[index_].button(next(skills))
+                except:
+                    break
+    with st.spinner(text="Loading section..."):
+        skill_tab()
+ 
+    pass
+if selected == _("Proyectos"):
+    columnas = st.columns(5)
+    columnas[4].button('topo')
+    pass
+
+# TEST
+st.title('STREAMLIT TUTORIAL')
+
+chart_data = pd.DataFrame(
+np.random.randn(20, 3),
+columns=['a', 'b', 'c'])
+st.area_chart(chart_data)
+
+with st.expander('nashe'):
+    st.markdown('asheeeeeeeeeeeeeeeee')
+
+#HEADER
+
+st.header('this is a header')
+
+st.subheader('this is a header')
+
+st.text('this is a header')
+
+st.markdown('###aaaaa')
+
+st.success('success')
+
+st.info('information')
+
+st.warning('this is a warning')
+
+st.error('error')
+
+st.exception('NameError("name three not defined")')
+
+st.help(range)
+
+st.write('Text with write')
+
+st.write(range(10))
+
+
+img = Image.open('shaco.png')
+st.image(img,width=300,caption='shaco')
+
+vid_file = open('biza.mp4','rb').read()
+#vid_bytes = vid_file.read()
+st.video(vid_file)
+
+audio_file = open('cancion.mp3','rb').read()
+st.audio(audio_file,format='audio/mp3')
+
+if st.checkbox('Show/Hide'):
+    st.text('Showing or hiding widget')
+
+status = st.radio('what is your status',('active','negative'))
+
+if status == 'active':
+    st.success('you are active')
+else:
+    st.warning('inactive, activate')
+
+occupation = st.selectbox('your ocupaation',['programer','datascience','doctor'])
+st.write('your selected this option',occupation)
+
+location = st.multiselect('where do you work',('london','new york','topo'))
+st.write('you selected',len(location),'locations')
+
+level = st.slider('what is your level',1,5)
+
+
+st.button('simple button')
+
+st.button('simple button2')
+
+if st.button('about'):
+    st.text('soy piola')
+
+firstname = st.text_input('enteryour name','TYPE here..')
+
+if st.button('submit'):
+    result = firstname.title()
+    st.success(result)
+    
+
+message = st.text_area('enteryour name','TYPE here..')
+
+if st.button('submit2'):
+    result = message.title()
+    st.success(result)
+    
+
+import datetime
+today = st.date_input('today is',datetime.datetime.now())
+
+the_time = st.time_input('the time is',datetime.time())
+
+st.text("display json")
+st.json({'name':'topo','gender':'male'})
+
+st.text('display raw code')
+st.code('import numpy as np')
+
+with st.echo():
+    import pandas as pd
+    df = pd.DataFrame()
+
+import time
+my_bar = st.progress(0)
+for p in range(10):
+    my_bar.progress(p + 1)
+
+with st.spinner('waiting ..'):
+    time.sleep(1)
+st.success('finished!')
+
+#st.balloons()
+
+st.header('nashe')
+
+
+@st.cache
+def run_f():
+    return range(100)
+
+
+st.write(run_f())
+
+
+st.pyplot()
+
+
+st.dataframe(df)
+
+st.table(df)
+
+
+
+
+
+############## linkedin robado
+# embed_component= {'linkedin':"""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+#     <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="gonzalo-pietraroia-7398241b9" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/gonzalo-pietraroia-7398241b9/"></a></div>"""}
+
+# with st.sidebar:
+#         components.html(embed_component['linkedin'],height=300)
+
+# linkedin no funciona en server
+# with st.sidebar:
+#     if st.button('LinkedIn'):
+#         webbrowser.open_new_tab('https://www.linkedin.com/in/gonzalo-pietraroia-7398241b9/')
+
+
+
+
+######################### nav bars
 
 # with open("style.css") as f:
 #     st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
@@ -151,156 +351,3 @@ margin: 10rem
 # </nav>
 # """
 # , unsafe_allow_html=True)
-
-selected = option_menu(
-    menu_title = None,
-    options=["Presentacion","Conocimientos","Proyectos"],
-    orientation="horizontal"
-)
-
-
-if selected == "Presentacion":
-  st.markdown('## Summary', unsafe_allow_html=True)
-  st.info('''
-- Experienced Educator, Researcher and Administrator with almost twenty years of experience in data-oriented environment and a passion for delivering insights based on predictive modeling. 
-- Strong verbal and written communication skills as demonstrated by extensive participation as invited speaker at `10` conferences as well as publishing 149 research articles.
-- Strong track record in scholarly research with H-index of `32` and total citation of 3200+.
-''')
-
-# TEST
-st.title('STREAMLIT TUTORIAL')
-
-#HEADER
-
-st.header('this is a header')
-
-st.subheader('this is a header')
-
-st.text('this is a header')
-
-st.markdown('###aaaaa')
-
-st.success('success')
-
-st.info('information')
-
-st.warning('this is a warning')
-
-st.error('error')
-
-st.exception('NameError("name three not defined")')
-
-st.help(range)
-
-st.write('Text with write')
-
-st.write(range(10))
-
-
-img = Image.open('shaco.png')
-st.image(img,width=300,caption='shaco')
-
-vid_file = open('biza.mp4','rb').read()
-#vid_bytes = vid_file.read()
-st.video(vid_file)
-
-audio_file = open('cancion.mp3','rb').read()
-st.audio(audio_file,format='audio/mp3')
-
-if st.checkbox('Show/Hide'):
-    st.text('Showing or hiding widget')
-
-status = st.radio('what is your status',('active','negative'))
-
-if status == 'active':
-    st.success('you are active')
-else:
-    st.warning('inactive, activate')
-
-occupation = st.selectbox('your ocupaation',['programer','datascience','doctor'])
-st.write('your selected this option',occupation)
-
-location = st.multiselect('where do you work',('london','new york','topo'))
-st.write('you selected',len(location),'locations')
-
-level = st.slider('what is your level',1,5)
-
-
-st.button('simple button')
-
-if st.button('about'):
-    st.text('soy piola')
-
-firstname = st.text_input('enteryour name','TYPE here..')
-
-if st.button('submit'):
-    result = firstname.title()
-    st.success(result)
-    
-
-message = st.text_area('enteryour name','TYPE here..')
-
-if st.button('submit2'):
-    result = message.title()
-    st.success(result)
-    
-
-import datetime
-today = st.date_input('today is',datetime.datetime.now())
-
-the_time = st.time_input('the time is',datetime.time())
-
-st.text("display json")
-st.json({'name':'topo','gender':'male'})
-
-st.text('display raw code')
-st.code('import numpy as np')
-
-with st.echo():
-    import pandas as pd
-    df = pd.DataFrame()
-
-import time
-my_bar = st.progress(0)
-for p in range(10):
-    my_bar.progress(p + 1)
-
-with st.spinner('waiting ..'):
-    time.sleep(1)
-st.success('finished!')
-
-#st.balloons()
-
-st.header('nashe')
-
-
-@st.cache
-def run_f():
-    return range(100)
-
-
-st.write(run_f())
-
-
-st.pyplot()
-
-
-st.dataframe(df)
-
-st.table(df)
-
-
-
-
-
-# linkedin robado
-# embed_component= {'linkedin':"""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-#     <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="gonzalo-pietraroia-7398241b9" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/gonzalo-pietraroia-7398241b9/"></a></div>"""}
-
-# with st.sidebar:
-#         components.html(embed_component['linkedin'],height=300)
-
-# linkedin no funciona en server
-# with st.sidebar:
-#     if st.button('LinkedIn'):
-#         webbrowser.open_new_tab('https://www.linkedin.com/in/gonzalo-pietraroia-7398241b9/')
